@@ -2,22 +2,28 @@ import styled from "styled-components";
 import Background from './assets/images/background.png';
 import { EventsType } from "./types/event";
 import EventContainer from "./components/EventContainer";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import 'swiper/scss';
+import 'swiper/scss/navigation';
+import { useState } from "react";
+
 
 type AppProps = {
   eventsList: EventsType[],
 }
 
-function App({ eventsList }: AppProps): JSX.Element {
 
-  const AppContainer = styled.main`
-  background-image: url(${Background});
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+const AppContainer = styled.main`
+background-image: url(${Background});
+background-size: cover;
+background-repeat: no-repeat;
+width: 100vw;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
 `;
 
 const AppContent = styled.div`
@@ -69,10 +75,12 @@ const Content = styled.div`
   height: 75vh;
   width: 100%;
   z-index: 3;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow: hidden;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* position: relative; */
+  /* overflow: hidden; */
+
+  display: grid;
 `;
 
 const Square = styled.div`
@@ -118,9 +126,9 @@ const Dates = styled.div`
   justify-content: center;
   gap: 100px;
   z-index: 4;
-  position: absolute;
-  top: 25%;
-  left: 25%;
+  /* position: absolute; */
+  /* top: 25%; */
+  /* left: 25%; */
 `;
 
 const DateText = styled.span`
@@ -148,10 +156,26 @@ const Slides = styled.span`
   margin: 0;
   padding: 0;
   /* align-self: flex-end; */
-  position: absolute;
-  bottom: 35%;
-  left: 58px;
+  /* position: absolute; */
+  /* bottom: 35%; */
+  /* left: 58px; */
 `;
+
+const SwiperContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* position: absolute; */
+  /* bottom: 0; */
+  /* left: 58px; */
+  width: 70vw;
+  justify-self: center;
+`;
+
+function App({ eventsList }: AppProps): JSX.Element {
+
+  const [firstDate, setFirstDate] = useState('');
+  const [secondDate, setSecondDate] = useState('');
 
   return (
     <AppContainer>
@@ -171,13 +195,14 @@ const Slides = styled.span`
             <DateTextPink>2022</DateTextPink>
 
           </Dates>
-          <Slides>01/06</Slides>
+          {/* <Slides>01/06</Slides> */}
 
-          <EventContainer eventsList={eventsList}/>
 
+          <SwiperContainer>
+              <EventContainer eventsList={eventsList}/>
+          </SwiperContainer>          
 
         </Content>
-        
       
       </AppContent>
       

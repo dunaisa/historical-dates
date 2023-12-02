@@ -1,36 +1,57 @@
 import { styled } from "styled-components";
 import EventsList from "./EventsList";
 import { EventsType } from "../types/event";
-import { Fragment } from "react";
+import { Navigation, Pagination, Scrollbar, A11y, Controller } from 'swiper/modules';
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import SlideButtons from "./SlideButtons";
+import { Fragment, useState } from "react";
+import EventsBtnsSlider from "./EventsBtnsSlider";
 
 type EventContainerProps = {
   eventsList: EventsType[]
 };
 
-function EventContainer({eventsList}: EventContainerProps): JSX.Element {
-
-  const EventContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  bottom: 0;
-  left: 58px;
-  gap: 80px;
+const EventContainerWrapper = styled(Swiper)`
+  display: grid;
 `;
 
-  return (
-    <EventContainer>
-      {
-        eventsList.map((slide) => 
-          <Fragment key={slide.id}>
-              <EventsList event={slide.events}/>
-          </Fragment>
-        )
-      }
+const EventContainerSlide = styled(SwiperSlide)`
+  display: flex;
+`;
 
-    </EventContainer>  
+function EventContainer({eventsList}: EventContainerProps): JSX.Element {
+
+  const [firstSwiper, setFirstSwiper] = useState(null);
+
+  return (
+    <EventContainerWrapper
     
+      modules={[ Pagination, Scrollbar, A11y, Controller]}
+      onSwiper={setFirstSwiper}
+      controller={{ control: firstSwiper }}
+      spaceBetween={0}
+      initialSlide={1}
+      slidesPerView={1}>
+
+        <SlideButtons />
+
+      {
+        eventsList.map((el) =>
+        {
+          return (
+
+          <EventContainerSlide key={el.id}>
+            <Fragment>
+
+              <EventsBtnsSlider />
+
+              <EventsList event={el.events}/>
+            </Fragment>
+          </EventContainerSlide>)}
+        
+        )
+      }    
+    </EventContainerWrapper>
   )
 }
 

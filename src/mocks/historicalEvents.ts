@@ -37,15 +37,15 @@ export const EventsArray: EventsType[] = [
     "events": [
       {
         "date": "1992",
-        "description": "провозглашение политики гласности"
+        "description": "Словарь Античности"
       },
       {
         "date": "1993",
-        "description": "ХIХ конференция КПСС"
+        "description": "Пеппи - Длинныйчулок. Мери Поппинс"
       },
       {
         "date": "1994",
-        "description": "вывод советских войск из Афганистана"
+        "description": "О вечном..."
       },
     ]
   },
