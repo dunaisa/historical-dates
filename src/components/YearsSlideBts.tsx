@@ -37,7 +37,7 @@ width: 6px;
 height: 12px;
 `;
 
-function EventsBtnsSlider() {
+function YearsSlideBts() {
   const swiperS = useSwiper();
 
   return (
@@ -53,4 +53,4 @@ function EventsBtnsSlider() {
   )
 }
 
-export default EventsBtnsSlider;
+export default YearsSlideBts;

@@ -1,11 +1,12 @@
 import { styled } from "styled-components";
-import EventsList from "./EventsList";
+// import EventsList from "./EventsList";
 import { EventsType } from "../types/event";
 import { Navigation, Pagination, Scrollbar, A11y, Controller } from 'swiper/modules';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
-import SlideButtons from "./SlideButtons";
+import PeriodSlideBts from "./PeriodSlideBts";
 import { Fragment, useState } from "react";
-import EventsBtnsSlider from "./EventsBtnsSlider";
+import EventsBtnsSlider from "./YearsSlideBts";
+import YearsList from "./YearsList";
 
 type EventContainerProps = {
   eventsList: EventsType[]
@@ -19,7 +20,10 @@ const EventContainerSlide = styled(SwiperSlide)`
   display: flex;
 `;
 
-function EventContainer({eventsList}: EventContainerProps): JSX.Element {
+
+
+
+function PeriodContainer({eventsList}: EventContainerProps): JSX.Element {
 
   const [firstSwiper, setFirstSwiper] = useState(null);
 
@@ -27,32 +31,27 @@ function EventContainer({eventsList}: EventContainerProps): JSX.Element {
     <EventContainerWrapper
     
       modules={[ Pagination, Scrollbar, A11y, Controller]}
-      onSwiper={setFirstSwiper}
-      controller={{ control: firstSwiper }}
-      spaceBetween={0}
-      initialSlide={1}
-      slidesPerView={1}>
+      // onSwiper={setFirstSwiper}
+      // controller={{ control: firstSwiper }}
+      spaceBetween={80}
+      initialSlide={0}
+      slidesPerView={1}
+      allowTouchMove={false}
+      >
 
-        <SlideButtons />
+        <PeriodSlideBts />
 
       {
         eventsList.map((el) =>
-        {
-          return (
-
           <EventContainerSlide key={el.id}>
-            <Fragment>
-
-              <EventsBtnsSlider />
-
-              <EventsList event={el.events}/>
-            </Fragment>
-          </EventContainerSlide>)}
+              {/* <EventsBtnsSlider /> */}
+              <YearsList event={el.events}/>
+          </EventContainerSlide>)
+      }
         
-        )
-      }    
+         
     </EventContainerWrapper>
   )
 }
 
-export default EventContainer;
+export default PeriodContainer;

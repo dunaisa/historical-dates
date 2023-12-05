@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Background from './assets/images/background.png';
 import { EventsType } from "./types/event";
-import EventContainer from "./components/EventContainer";
+import PeriodContainer from "./components/PeriodContainer";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import 'swiper/scss';
@@ -199,7 +199,7 @@ function App({ eventsList }: AppProps): JSX.Element {
 
 
           <SwiperContainer>
-              <EventContainer eventsList={eventsList}/>
+              <PeriodContainer eventsList={eventsList}/>
           </SwiperContainer>          
 
         </Content>

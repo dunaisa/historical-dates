@@ -31,7 +31,7 @@ width: 6px;
 height: 12px;
 `;
 
-function SlideButtons() {
+function PeriodSlideBts() {
   const swiper = useSwiper();
 
   return (
@@ -47,4 +47,4 @@ function SlideButtons() {
   )
 }
 
-export default SlideButtons;
+export default PeriodSlideBts;
